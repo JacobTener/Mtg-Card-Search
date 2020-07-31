@@ -36,7 +36,7 @@ const outputHtml = (matches) => {
           <div class="card text-white mb-3 text-center">
               <a href="https://www.mtggoldfish.com/price/${
                 match.setName
-              }/${match.name.replace(/,/g, "")}#online" target="_blank">
+              }/${match.name.replace(/,|'/g, "")}#online" target="_blank">
               <img src=${match.imageUrl} class="cardImage"></a>
               <h6 class="mt-2">${match.name}</h4>
           </div>
