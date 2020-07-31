@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/ba48108ed1.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>MTG Card Lookup</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 m-auto text-center">
+          <h3 class="text-center mb-3">
+            <img id="img" src="/img/HTR_S.png" alt="mtg thing" /> MTG Card
+            Lookup
+          </h3>
+          <div class="form-group">
+            <input
+              type="text"
+              id="search"
+              class="form-control form-control-lg"
+              placeholder="Enter mtg card name..."
+            />
+            <button
+              class="btn btn-outline-secondary btn-block btn-lg"
+              type="button"
+              id="searchBtn"
+              value="Search"
+            >
+              Search
+            </button>
+            <small>Free queries take a little while..</small>
+          </div>
+          <div class="match-list"></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>
