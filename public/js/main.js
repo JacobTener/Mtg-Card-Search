@@ -2,8 +2,12 @@ const search = document.querySelector("#search");
 const searchBtn = document.querySelector("#searchBtn");
 const matchList = document.querySelector(".match-list");
 const loading = document.querySelector("#loading");
+const queryText = document.querySelector("#query-text");
+const navBtn = document.querySelector(".navbar-toggler");
+const navToggle = document.querySelector("#navbarColor02");
 
 const searchCards = async (searchText) => {
+  queryText.textContent = "Free queries take a little while..";
   gif = document.createElement("img");
   gif.src = "../img/200w.webp";
   gif.className += "gif";
@@ -26,6 +30,7 @@ const searchCards = async (searchText) => {
   }
   outputHtml(matches);
   loading.textContent = "";
+  queryText.textContent = "";
 };
 
 const outputHtml = (matches) => {
@@ -37,8 +42,10 @@ const outputHtml = (matches) => {
               <a href="https://www.mtggoldfish.com/price/${
                 match.setName
               }/${match.name.replace(/,|'/g, "")}#online" target="_blank">
-              <img src=${match.imageUrl} class="cardImage"></a>
-              <h6 class="mt-2">${match.name} set: ${match.setName}</h4>
+              <img src=${
+                match.imageUrl
+              } class="cardImage" alt="Not Found" onerror=this.src="../img/back.png"></a>
+              <h6 class="mt-2">${match.name} (${match.setName})</h4>
           </div>
           `
       )
@@ -52,4 +59,11 @@ const outputHtml = (matches) => {
 searchBtn.addEventListener("click", () => searchCards(search.value));
 search.addEventListener("keyup", (e) => {
   if (e.keyCode === 13) searchBtn.click();
+});
+navBtn.addEventListener("click", () => {
+  if (navToggle.classList.contains("show")) {
+    navToggle.classList.remove("show");
+  } else {
+    navToggle.classList += " show";
+  }
 });
