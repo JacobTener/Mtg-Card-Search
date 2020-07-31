@@ -6,6 +6,11 @@ const queryText = document.querySelector("#query-text");
 const navBtn = document.querySelector(".navbar-toggler");
 const navToggle = document.querySelector("#navbarColor02");
 
+/**
+ *  Fetching and filters data from api
+ *  Also handles text display changes before/during/after query
+ * @param {*} searchText
+ */
 const searchCards = async (searchText) => {
   queryText.textContent = "Free queries take a little while..";
   gif = document.createElement("img");
@@ -24,15 +29,15 @@ const searchCards = async (searchText) => {
     return card.name.match(regex) && cards.indexOf(card) === index;
     //}
   });
-  if (searchText.length === 0) {
-    matches = [];
-    matchList.innerHTML = "";
-  }
   outputHtml(matches);
   loading.textContent = "";
   queryText.textContent = "";
 };
 
+/**
+ * Handles displaying cards to page
+ * @param {} matches
+ */
 const outputHtml = (matches) => {
   if (matches.length > 0) {
     const html = matches
@@ -55,11 +60,16 @@ const outputHtml = (matches) => {
     console.log(matches);
   }
 };
-
+/**
+ * Listeners for button/enter press to fire query
+ */
 searchBtn.addEventListener("click", () => searchCards(search.value));
 search.addEventListener("keyup", (e) => {
   if (e.keyCode === 13) searchBtn.click();
 });
+/**
+ * Listener for nav button press - Toggles navbar
+ */
 navBtn.addEventListener("click", () => {
   if (navToggle.classList.contains("show")) {
     navToggle.classList.remove("show");
