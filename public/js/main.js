@@ -16,9 +16,9 @@ const searchCards = async (searchText) => {
 
   let matches = cards.filter((card, index) => {
     const regex = new RegExp(`^${searchText}`, "gi");
-    if (card.imageUrl != null) {
-      return card.name.match(regex) && cards.indexOf(card) === index;
-    }
+    // if (card.imageUrl != null) {
+    return card.name.match(regex) && cards.indexOf(card) === index;
+    //}
   });
   if (searchText.length === 0) {
     matches = [];
@@ -38,7 +38,7 @@ const outputHtml = (matches) => {
                 match.setName
               }/${match.name.replace(/,|'/g, "")}#online" target="_blank">
               <img src=${match.imageUrl} class="cardImage"></a>
-              <h6 class="mt-2">${match.name}</h4>
+              <h6 class="mt-2">${match.name} set: ${match.setName}</h4>
           </div>
           `
       )
