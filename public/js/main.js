@@ -1,8 +1,13 @@
 const search = document.querySelector("#search");
 const searchBtn = document.querySelector("#searchBtn");
 const matchList = document.querySelector(".match-list");
+const loading = document.querySelector("#loading");
 
 const searchCards = async (searchText) => {
+  gif = document.createElement("img");
+  gif.src = "../img/200w.webp";
+  gif.className += "gif";
+  loading.appendChild(gif);
   const res = await fetch(
     `https://api.magicthegathering.io/v1/cards?name=${searchText}`
   );
@@ -20,6 +25,7 @@ const searchCards = async (searchText) => {
     matchList.innerHTML = "";
   }
   outputHtml(matches);
+  loading.textContent = "";
 };
 
 const outputHtml = (matches) => {
@@ -28,14 +34,22 @@ const outputHtml = (matches) => {
       .map(
         (match) => `
           <div class="card text-white mb-3 text-center">
-              <h4>${match.name}</h4><img src=${match.imageUrl} class="cardImage">
+              <a href="https://www.mtggoldfish.com/price/${
+                match.setName
+              }/${match.name.replace(/,/g, "")}#online" target="_blank">
+              <img src=${match.imageUrl} class="cardImage"></a>
+              <h6 class="mt-2">${match.name}</h4>
           </div>
           `
       )
       .join("");
 
     matchList.innerHTML = html;
+    console.log(matches);
   }
 };
 
 searchBtn.addEventListener("click", () => searchCards(search.value));
+search.addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) searchBtn.click();
+});
